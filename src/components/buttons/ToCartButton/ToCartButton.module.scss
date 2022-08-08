@@ -1,0 +1,16 @@
+.to_cart_button {
+  background-color: transparent;
+  padding: 8px 26px;
+  border: 2px solid #ffffff;
+  border-radius: 31px;
+  color: #ffffff;
+  font-family: "Inter-Regular";
+  font-size: 14px;
+
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &:hover{
+    background-color: rgb(197, 176, 158);
+  }
+}
