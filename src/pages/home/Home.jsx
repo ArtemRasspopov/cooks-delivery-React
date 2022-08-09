@@ -1,10 +1,14 @@
-import React from 'react'
-import FirstScreen from '../../components/firstScreen/FirstScreen'
+import React from "react";
+import Content from "../../components/content/Content";
+import FirstScreen from "../../components/firstScreen/FirstScreen";
 
 const Home = () => {
   return (
-    <FirstScreen/>
-  )
-}
+    <>
+      <FirstScreen />
+      <Content />
+    </>
+  );
+};
 
-export default Home
+export default Home;

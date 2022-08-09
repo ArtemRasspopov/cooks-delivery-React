@@ -20,13 +20,6 @@
   position: relative;
 }
 
-.top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-
 .middle {
   display: flex;
   justify-content: space-between;
@@ -36,6 +29,7 @@
 }
 
 .title {
+  position: relative;
   font-family: "Inter-ExtraBold";
   font-size: 64px;
   line-height: 77px;
@@ -46,6 +40,7 @@
 }
 
 .subtitle {
+  position: relative;
   font-family: "Lato-Lato-Regular";
   font-weight: 400;
   font-size: 16px;
@@ -104,7 +99,8 @@
 .image {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 47%;
+  z-index: 0;
   
   transform: translateY(-50%) translateX(-50%);
   width: 500px;

@@ -1,13 +1,11 @@
 import React from "react";
 import style from "./FirstScreen.module.scss";
 import BgImage from "../../sources/images/firstScreenBg.png";
-import Logo from "../logo/Logo";
-import Menu from "../menu/Menu";
-import ToCartButton from "../buttons/ToCartButton/ToCartButton";
 import soup1Image from "../../sources/images/soup-1.png"
 
 //svg
 import { ReactComponent as ScrollToSvg } from "../../sources/images/scrollTo.svg";
+import Header from "../header/Header";
 
 const FirstScreen = () => {
   return (
@@ -21,11 +19,7 @@ const FirstScreen = () => {
             {/* <div className={style.image}> */}
               <img className={style.image} src={soup1Image} alt="soupimage" />
             {/* </div> */}
-            <div className={style.top}>
-              <Logo />
-              <Menu />
-              <ToCartButton title={"Cart"} />
-            </div>
+            <Header/>
             <div className={style.middle}>
               <div>
                 <h1 className={style.title}>Enjoy Delicious Meals</h1>

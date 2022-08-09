@@ -1,0 +1,82 @@
+.product_curd {
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px 40px 40px 5px;
+  // background-color: #ffffff;
+  box-shadow: 2px 2px 30px rgba(228, 228, 228, 0.05), 40px 40px 50px rgba(215, 215, 215, 0.5);
+  max-width: 360px;
+  overflow: hidden;
+}
+
+.image_inner {
+  background-color: #fe724b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 360px;
+  cursor: pointer;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.title {
+  font-family: "Gilroy-Bold";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  color: #212629;
+}
+
+.info {
+  font-family: "Inter-Regular";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(33, 38, 41, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  li {
+    position: relative;
+  }
+
+  li:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    width: 3.25px;
+    height: 3.25px;
+    background: rgba(33, 38, 41, 0.2);
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  li:last-child {
+    font-family: "Inter-ExtraBold";
+  }
+}
+
+.description {
+  font-family: "Inter-Regular";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 20px;
+  color: rgba(33, 38, 41, 0.5);
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}

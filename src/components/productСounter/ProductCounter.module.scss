@@ -1,0 +1,31 @@
+.product_counter {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  p {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    color: #212629;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  transition: all 0.5s;
+  background-color: transparent;
+
+  &:active {
+    svg {
+      path {
+        fill: orange;
+      }
+    }
+  }
+}

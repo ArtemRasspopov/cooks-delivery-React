@@ -1,0 +1,35 @@
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 150px;
+}
+
+.link {
+  font-family: 'Gilroy-Light';
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 20px;
+  color: #212629;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid rgba(22, 22, 22, 0.08);
+  transition: all 0.5s;
+
+  svg{
+    path{
+      transition: all 0.5s;
+    }
+  }
+
+  &:hover{
+    color: #25D366;
+    svg{
+      path{
+        fill: #25D366;
+      }
+    }
+  }
+}

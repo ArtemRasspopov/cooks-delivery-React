@@ -1,0 +1,22 @@
+.categories {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 42px 0;
+}
+
+.button {
+  font-family: 'Gilroy-Bold';
+  color: #212629;
+  background: #e9e9e9;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08), -1px -1px 6px rgba(255, 255, 255, 0.5), -5px -5px 20px #ffffff,
+    5px 5px 20px #d3d3d3;
+  border-radius: 99px;
+  padding: 9px 20px;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:hover{
+    padding: 9px 25px;
+  }
+}
