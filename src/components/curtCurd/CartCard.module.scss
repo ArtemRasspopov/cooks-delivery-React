@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px 20px 20px 5px;
+  padding: 30px 40px;
+}
+
+.card_image {
+  width: 60px;
+  height: 60px;
+  background-color: #fe9102;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.card_title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: max-content;
+  margin-right: auto;
+
+  h2 {
+    font-size: 30px;
+    line-height: 37px;
+    color: #212629;
+  }
+}
+
+.price {
+  font-size: 24px;
+  line-height: 37px;
+  color: #212629;
+  min-width: 100px;
+  margin-left: 50px;
+  text-align: right;
+}

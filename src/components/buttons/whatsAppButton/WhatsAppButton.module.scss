@@ -1,0 +1,18 @@
+.whats_app_button {
+  background: #25d366;
+  border-radius: 30px;
+  padding: 10px 30px 10px 30px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  svg{
+    path{
+      fill: white;
+    }
+  }
+}
