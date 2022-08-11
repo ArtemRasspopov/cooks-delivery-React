@@ -2,22 +2,31 @@ import React from "react";
 import style from "./CartCard.module.scss";
 import ProductCounter from "../../components/productСounter/ProductCounter";
 
+//svg
+import { ReactComponent as ExitSvg } from "../../sources/images/exit.svg";
+
 const CartCard = ({ title, image, counter, price }) => {
   console.log(image);
   return (
-    <div className={style.card}>
-      {image && (
-        <div className={style.card_image}>
-          <img src={image} alt="img" />
+    <>
+      <div className={style.card}>
+        {image && (
+          <div className={style.card_image}>
+            <img src={image} alt="img" />
+          </div>
+        )}
+        <div className={style.card_title}>
+          <h2>{title}</h2>
         </div>
+        {counter && <ProductCounter />}
+        <p className={style.price}>{price} ₽</p>
+        {image && (
+        <button className={style.remove}>
+          <ExitSvg />
+        </button>
       )}
-
-      <div className={style.card_title}>
-        <h2>{title}</h2>
       </div>
-      {counter && <ProductCounter />}
-      <p className={style.price}>{price} ₽</p>
-    </div>
+    </>
   );
 };
 
