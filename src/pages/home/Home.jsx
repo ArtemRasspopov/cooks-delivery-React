@@ -1,12 +1,12 @@
 import React from "react";
-import Content from "../../components/content/Content";
+// import Content from "../../components/content/Content";
 import FirstScreen from "../../components/firstScreen/FirstScreen";
 
 const Home = () => {
   return (
     <>
       <FirstScreen />
-      <Content />
+      {/* <Content /> */}
     </>
   );
 };

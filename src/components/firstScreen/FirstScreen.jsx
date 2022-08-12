@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./FirstScreen.module.scss";
 import BgImage from "../../sources/images/firstScreenBg.png";
-import soup1Image from "../../sources/images/soup-1.png"
+import soup1Image from "../../sources/images/soup-1.png";
 
 //svg
 import { ReactComponent as ScrollToSvg } from "../../sources/images/scrollTo.svg";
@@ -16,10 +16,8 @@ const FirstScreen = () => {
       >
         <div className="container">
           <div className={style.inner}>
-            {/* <div className={style.image}> */}
-              <img className={style.image} src={soup1Image} alt="soupimage" />
-            {/* </div> */}
-            <Header/>
+            <img className={style.image} src={soup1Image} alt="soupimage" />
+            <Header />
             <div className={style.middle}>
               <div>
                 <h1 className={style.title}>Enjoy Delicious Meals</h1>
