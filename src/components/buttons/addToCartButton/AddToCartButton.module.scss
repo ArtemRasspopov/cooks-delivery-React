@@ -15,3 +15,10 @@
     box-shadow: inset 6px 6px 5px rgba(0, 0, 0, 0.06);
   }
 }
+
+@media (max-width: 1400px){
+  .add_to_cart_button{
+    padding: 5px 15px;
+    font-size: 100%;
+  }
+}

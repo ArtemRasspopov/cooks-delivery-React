@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   border-radius: 40px 40px 40px 5px;
-  // background-color: #ffffff;
   box-shadow: 2px 2px 30px rgba(228, 228, 228, 0.05), 40px 40px 50px rgba(215, 215, 215, 0.5);
   max-width: 360px;
   overflow: hidden;
@@ -13,8 +12,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 360px;
   cursor: pointer;
+
+  img{
+    width: 100%;
+  }
 }
 
 .inner {
@@ -22,6 +24,8 @@
   flex-direction: column;
   gap: 20px;
   padding: 20px;
+
+  
 }
 
 .title {
@@ -79,4 +83,30 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+}
+
+.product_curd {
+  max-width: none;
+}
+
+@media (max-width: 1400px){
+  .title{
+    font-size: 15px;
+    line-height: 23px;
+  }
+
+  .inner{
+    gap: 15px;
+  }
+
+  .info{
+    font-size: 10px;
+    line-height: 15px;
+  }
+
+  .description{
+    font-size: 13px;
+    line-height: 18px;
+  }  
+
 }
