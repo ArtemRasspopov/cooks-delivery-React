@@ -1,6 +1,6 @@
 .sorting_popup {
   position: absolute;
-  top: 150%;
+  top: 200%;
   right: -13px;
   display: flex;
   flex-direction: column;
@@ -9,10 +9,11 @@
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
   border-radius: 10px;
   overflow: hidden;
+  animation: show-popup 0.3s;
 }
 
 .button {
-  font-family: 'Inter-Regular';
+  font-family: "Inter-Regular";
   cursor: pointer;
   padding: 15px 40px 15px 15px;
   width: 100%;
@@ -22,9 +23,28 @@
   line-height: 17px;
   letter-spacing: 0.015em;
   background-color: #ffffff;
-  
+
+  &.active {
+    background-color: #fe5f1e0d;
+    color: #fe5f1e;
+  }
+
   &:hover {
     color: #fe5f1e;
     background-color: rgba(254, 95, 30, 0.05);
+  }
+}
+
+@keyframes show-popup {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

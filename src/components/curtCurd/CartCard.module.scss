@@ -44,7 +44,7 @@
   text-align: right;
 }
 
-.remove{
+.remove {
   position: absolute;
   right: -70px;
   top: 50%;
@@ -53,9 +53,60 @@
   padding: 20px;
   background-color: transparent;
 
-  svg{
-    path{
+  svg {
+    path {
       fill: black;
     }
   }
+}
+
+@media (max-width: 1400px) {
+  .card {
+    margin-right: 50px;
+  }
+
+  .card_title {
+    h2 {
+      font-size: 20px;
+      line-height: 32px;
+    }
+  }
+
+  .price {
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  .card {
+    padding: 20px 40px;
+  }
+}
+
+@media (max-width: 820px) {
+  .card {
+    padding: 13px 20px;
+  }
+
+  .remove {
+    padding: 0;
+    right: -38px;
+  }
+
+  .card_title {
+    h2 {
+      font-size: 12px;
+      line-height: 20px;
+    }
+  }
+
+  .price{
+    font-size: 15px;
+    line-height: 20px;
+    margin-left: 0;
+    min-width: 80px;
+  }
+}
+
+@media (max-width: 620px) {
+
 }
