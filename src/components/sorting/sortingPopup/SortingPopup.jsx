@@ -1,33 +1,24 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { fetchProducts, setFilter } from "../../../redux/slices/contentSlice";
 import style from "./SortingPopup.module.scss";
 
-const SortingPopup = ({ sortingList, activeSortItem }) => {
-  const dispatch = useDispatch();
+const SortingPopup = ({ sortingList, activeSort, setActiveSort }) => {
+  console.log(sortingList);
 
-  const sortingData = {
-    Цене : 'Price',
-    Весу : 'Weight',
-  }
-
-  console.log(sortingData.Цене)
-
-  function buttonOnClick(item) {
-    dispatch(setFilter(sortingData.item));
-    dispatch(fetchProducts(sortingData.item));
+  function buttonOnClick(index) {
+    setActiveSort(index);
   }
 
   return (
     <ul className={style.sorting_popup}>
-      {sortingList.map((item, index) => (
+      {sortingList.map((sortingListItem, index) => (
         <li key={index}>
           <button
-            className={`${style.button} ${activeSortItem === item ? style.active : ''}`}
-            target={item}
-            onClick={() => buttonOnClick(item)}
+            className={`${style.button} ${
+              activeSort === index ? style.active : ""
+            }`}
+            onClick={() => buttonOnClick(index)}
           >
-            {item}
+            {sortingListItem.name}
           </button>
         </li>
       ))}

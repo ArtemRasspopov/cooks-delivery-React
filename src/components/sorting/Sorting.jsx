@@ -1,29 +1,38 @@
 import React from "react";
 import style from "./Sorting.module.scss";
 import SortingPopup from "./sortingPopup/SortingPopup";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../../redux/slices/contentSlice";
 //svg
 import { ReactComponent as ArrowSvg } from "../../sources/images/sorting.svg";
-import { useSelector } from "react-redux";
-
 
 const Sorting = () => {
-
-  const activeSortItem = useSelector((state) => state.contentSlice.filter)
-  const sortingList = ["Популярности", "Цене", "Алфавиту"];
+  const sortingList = [
+    { name: "Цене", property: "Price" },
+    { name: "Весу", property: "Weight" },
+    { name: "Калориям", property: "Calories" },
+  ];
   const [popupIsVisible, SetPopupIsVisible] = React.useState(false);
+  const [activeSort, setActiveSort] = React.useState(0);
+  const dispatch = useDispatch();
   const sortRef = React.useRef(null);
 
   function popupOnClick() {
     SetPopupIsVisible((prev) => !prev);
   }
 
-  const handelClickOutside = (event) => {
-    if (!event.path.includes(sortRef.current)) {
-      SetPopupIsVisible(false);
-    }
-  };
+  React.useEffect(() => {
+    dispatch(setFilter(sortingList[activeSort].property));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSort]);
 
   React.useEffect(() => {
+    const handelClickOutside = (event) => {
+      if (!event.path.includes(sortRef.current)) {
+        SetPopupIsVisible(false);
+      }
+    };
+
     document.body.addEventListener("click", handelClickOutside);
 
     return () => {
@@ -43,9 +52,15 @@ const Sorting = () => {
           <ArrowSvg />
         </div>
         <p>
-          Сортировка по: <span>{activeSortItem}</span>
+          Сортировка по: <span>{sortingList[activeSort].name}</span>
         </p>
-        {popupIsVisible && <SortingPopup activeSortItem={activeSortItem} sortingList={sortingList} />}
+        {popupIsVisible && (
+          <SortingPopup
+            sortingList={sortingList}
+            activeSort={activeSort}
+            setActiveSort={setActiveSort}
+          />
+        )}
       </div>
     </div>
   );

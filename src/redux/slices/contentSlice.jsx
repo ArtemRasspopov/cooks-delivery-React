@@ -3,10 +3,10 @@ import axios from "axios";
 
 export const fetchProducts = createAsyncThunk(
   "locations/fetchProducts",
-  async (filter) => {
-    console.log(filter)
+  async (property) => {
+    console.log(property)
     const res = await axios.get(
-      `https://629703cc14e756fe3b26fb80.mockapi.io/products?sortBy=Weight&order=desc`
+      `https://629703cc14e756fe3b26fb80.mockapi.io/products?sortBy=${property}&order=desc`
     );
     return res.data;
   }
@@ -15,7 +15,7 @@ export const fetchProducts = createAsyncThunk(
 const initialState = {
   productsList: [],
   status: "loading", // loading | success | error
-  filter: 'Популярности'
+  filter: 'Price'
 };
 
 export const contentSlice = createSlice({
