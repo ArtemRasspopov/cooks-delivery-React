@@ -6,7 +6,7 @@ export const fetchProducts = createAsyncThunk(
   async (property) => {
     console.log(property)
     const res = await axios.get(
-      `https://629703cc14e756fe3b26fb80.mockapi.io/products?sortBy=${property}&order=desc`
+      `https://629703cc14e756fe3b26fb80.mockapi.io/products?sortBy=${property.activeSort}&Category=${property.category}&order=desc`
     );
     return res.data;
   }
@@ -15,7 +15,8 @@ export const fetchProducts = createAsyncThunk(
 const initialState = {
   productsList: [],
   status: "loading", // loading | success | error
-  filter: 'Price'
+  filter: 'Price',
+  category: 'Все'
 };
 
 export const contentSlice = createSlice({
@@ -24,6 +25,9 @@ export const contentSlice = createSlice({
   reducers: {
     setFilter: (state, action) => {
       state.filter = action.payload;
+    },
+    setCategory: (state, action) => {
+      state.category = action.payload;
     },
   },
   extraReducers: {
@@ -42,6 +46,6 @@ export const contentSlice = createSlice({
   },
 });
 
-export const {setFilter} = contentSlice.actions;
+export const {setFilter, setCategory} = contentSlice.actions;
 
 export default contentSlice.reducer;

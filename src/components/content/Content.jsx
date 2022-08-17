@@ -12,12 +12,13 @@ const Content = () => {
   const productsStatus = useSelector((state) => state.contentSlice.status);
   const productsList = useSelector((state) => state.contentSlice.productsList);
   const activeSort = useSelector((state) => state.contentSlice.filter);
+  const category = useSelector((state) => state.contentSlice.category)
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(fetchProducts(activeSort));
+    dispatch(fetchProducts({activeSort, category}));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSort]);
+  }, [category, activeSort]);
 
   return (
     <div className={style.content}>
