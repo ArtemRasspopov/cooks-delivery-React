@@ -8,7 +8,7 @@ import ProductCurdSkeleton from "../skeletons/productCurdSkeleton/ProductCurdSke
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts } from "./../../redux/slices/contentSlice";
 
-const Content = () => {
+const Content = ({setProductPopupIsVisible}) => {
   const productsStatus = useSelector((state) => state.contentSlice.status);
   const productsList = useSelector((state) => state.contentSlice.productsList);
   const activeSort = useSelector((state) => state.contentSlice.filter);
@@ -28,8 +28,8 @@ const Content = () => {
         <div className={style.product_list}>
           {productsStatus === "loading"
             ? [...new Array(6)].map((_, id) => <ProductCurdSkeleton key={id} />)
-            : productsList.map((item) => (
-                <ProductCurd {...item} key={item.Id} />
+            : productsList.map((productItem) => (
+                <ProductCurd productItem={productItem} key={productItem.Id} setProductPopupIsVisible={setProductPopupIsVisible}/>
               ))}
         </div>
         <Footer />

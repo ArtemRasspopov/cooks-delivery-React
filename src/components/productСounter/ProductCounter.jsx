@@ -1,18 +1,23 @@
-import React from 'react'
-import style from './ProductCounter.module.scss'
+import React from "react";
+import style from "./ProductCounter.module.scss";
 
 //svg
-import { ReactComponent as MinusSvg } from '../../sources/images/minus.svg'
-import { ReactComponent as PlusSvg } from '../../sources/images/plus.svg'
+import { ReactComponent as MinusSvg } from "../../sources/images/minus.svg";
+import { ReactComponent as PlusSvg } from "../../sources/images/plus.svg";
 
-const ProductCounter = () => {
+const ProductCounter = ({minus, plus, ProductQuantity}) => {
+
   return (
     <div className={style.product_counter}>
-      <button className={style.button}><MinusSvg/></button>
-      <p>1</p>
-      <button className={style.button}><PlusSvg/></button>
+      <button className={style.button} onClick={() => minus()}>
+        <MinusSvg />
+      </button>
+      <p>{ProductQuantity}</p>
+      <button className={style.button} onClick={() => plus()}>
+        <PlusSvg />
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default ProductCounter
+export default ProductCounter;

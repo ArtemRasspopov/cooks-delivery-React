@@ -1,11 +1,14 @@
 import React from "react";
-// import Cart from "./pages/cart/Cart";
+import { Route, Routes } from "react-router-dom";
+import Cart from "./pages/cart/Cart";
 import Home from "./pages/home/Home";
 
 function App() {
   return (
-    <Home/>
-    // <Cart/>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="cart" element={<Cart />} />
+    </Routes>
   );
 }
 

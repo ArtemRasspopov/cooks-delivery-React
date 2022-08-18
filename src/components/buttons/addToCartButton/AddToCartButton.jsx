@@ -1,10 +1,13 @@
-import React from 'react'
-import style from './AddToCartButton.module.scss'
+import React from "react";
+import style from "./AddToCartButton.module.scss";
 
-const AddToCartButton = () => {
+const AddToCartButton = ({buttonOnClick}) => {
+
   return (
-    <button className={style.add_to_cart_button}>Добавить</button>
-  )
-}
+    <button className={style.add_to_cart_button} onClick={() => buttonOnClick()}>
+      Добавить
+    </button>
+  );
+};
 
-export default AddToCartButton
+export default AddToCartButton;
