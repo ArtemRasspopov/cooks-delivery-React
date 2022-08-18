@@ -8,7 +8,11 @@ import { ReactComponent as CheckerSvg } from "../../../sources/images/checker.sv
 import { ReactComponent as ExitSvg } from "../../../sources/images/exit.svg";
 import { ReactComponent as HeartSvg } from "../../../sources/images/heart.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { clearStore, SetEdition } from "../../../redux/slices/selectedProductSlice";
+import {
+  clearStore,
+  SetEdition,
+} from "../../../redux/slices/selectedProductSlice";
+import ProductCounter from "../../productСounter/ProductCounter";
 
 const ProductPopup = ({ setProductPopupIsVisible }) => {
   const { productData, finalPrice } = useSelector(
@@ -17,9 +21,9 @@ const ProductPopup = ({ setProductPopupIsVisible }) => {
   const dispatch = useDispatch();
 
   const popupClose = () => {
-    dispatch(clearStore())
-    setProductPopupIsVisible(false)
-  }
+    dispatch(clearStore());
+    setProductPopupIsVisible(false);
+  };
 
   return (
     <>
@@ -63,10 +67,7 @@ const ProductPopup = ({ setProductPopupIsVisible }) => {
               Добавить {finalPrice} ₽
             </button>
           </div>
-          <button
-            className={style.exit}
-            onClick={() => popupClose()}
-          >
+          <button className={style.exit} onClick={() => popupClose()}>
             <ExitSvg />
           </button>
           <button className={style.add_to_liked}>

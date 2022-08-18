@@ -5,7 +5,7 @@ import style from "./ProductCounter.module.scss";
 import { ReactComponent as MinusSvg } from "../../sources/images/minus.svg";
 import { ReactComponent as PlusSvg } from "../../sources/images/plus.svg";
 
-const ProductCounter = ({minus, plus, ProductQuantity}) => {
+const ProductCounter = ({minus, plus, ProductQuantity = 1 }) => {
 
   return (
     <div className={style.product_counter}>
