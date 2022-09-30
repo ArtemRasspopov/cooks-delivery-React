@@ -12,17 +12,23 @@ import {
   clearStore,
   SetEdition,
 } from "../../../redux/slices/selectedProductSlice";
-import ProductCounter from "../../productСounter/ProductCounter";
+import { setProducts } from "../../../redux/slices/cartSlice";
 
 const ProductPopup = ({ setProductPopupIsVisible }) => {
   const { productData, finalPrice } = useSelector(
     (state) => state.selectedProductSlice
   );
+  const selectedProduct = useSelector((state) => state.selectedProductSlice);
   const dispatch = useDispatch();
 
   const popupClose = () => {
     dispatch(clearStore());
     setProductPopupIsVisible(false);
+  };
+
+  const addToCart = () => {
+    dispatch(setProducts(selectedProduct));
+    popupClose();
   };
 
   return (
@@ -40,30 +46,33 @@ const ProductPopup = ({ setProductPopupIsVisible }) => {
               <li>{productData.Price} ₽</li>
             </ul>
             <p className={style.description}>{productData.Description}</p>
-            <form className={style.additions}>
-              <p className={style.additions_title}>Дополнительно:</p>
-              <ul className={style.additions_items}>
-                {productData.Additions.map((addition, index) => (
-                  <li key={index}>
-                    <label className={style.additions_item}>
-                      <p>{addition.Title}</p>
-                      <p>+ {addition.Price} ₽</p>
-                      <label>
-                        <input
-                          className={style.additions_checkbox}
-                          type="checkbox"
-                          onClick={() => dispatch(SetEdition(addition))}
-                        />
-                        <div className={style.checker}>
-                          <CheckerSvg />
-                        </div>
+            {productData.Additions && (
+              <form className={style.additions}>
+                <p className={style.additions_title}>Дополнительно:</p>
+                <ul className={style.additions_items}>
+                  {productData.Additions.map((addition, index) => (
+                    <li key={index}>
+                      <label className={style.additions_item}>
+                        <p>{addition.Title}</p>
+                        <p>+ {addition.Price} ₽</p>
+                        <label>
+                          <input
+                            className={style.additions_checkbox}
+                            type="checkbox"
+                            onClick={() => dispatch(SetEdition(addition))}
+                          />
+                          <div className={style.checker}>
+                            <CheckerSvg />
+                          </div>
+                        </label>
                       </label>
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </form>
-            <button className={style.add_button}>
+                    </li>
+                  ))}
+                </ul>
+              </form>
+            )}
+
+            <button className={style.add_button} onClick={() => addToCart()}>
               Добавить {finalPrice} ₽
             </button>
           </div>

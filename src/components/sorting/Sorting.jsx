@@ -8,6 +8,7 @@ import { ReactComponent as ArrowSvg } from "../../sources/images/sorting.svg";
 
 const Sorting = () => {
   const sortingList = [
+    { name: "Популярности", property: "Rating" },
     { name: "Цене", property: "Price" },
     { name: "Весу", property: "Weight" },
     { name: "Калориям", property: "Calories" },

@@ -2,12 +2,17 @@ import React from "react";
 import style from "./ProductCard.module.scss";
 import AddToCartButton from "../buttons/addToCartButton/AddToCartButton";
 import ProductCounter from "../productСounter/ProductCounter";
-import { useDispatch } from "react-redux";
-import { setFinalPrice, setProductData, setQuantity } from "../../redux/slices/selectedProductSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setFinalPrice,
+  setProductData,
+  setQuantity,
+} from "../../redux/slices/selectedProductSlice";
+import ProductIsSelected from "../buttons/ProductIsSelected/ProductIsSelected";
 
-const ProductCurd = ({productItem, setProductPopupIsVisible}) => {
-
-  const dispatch = useDispatch()
+const ProductCurd = ({ productItem, setProductPopupIsVisible }) => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.cartSlice);
   const [ProductQuantity, setProductQuantity] = React.useState(1);
 
   const reduceQuantity = () => {
@@ -23,11 +28,11 @@ const ProductCurd = ({productItem, setProductPopupIsVisible}) => {
   };
 
   const addToCart = () => {
-    dispatch(setProductData(productItem))
-    dispatch(setQuantity(ProductQuantity))
-    dispatch(setFinalPrice(ProductQuantity * productItem.Price))
-    setProductPopupIsVisible(true)
-  }
+    dispatch(setProductData(productItem));
+    dispatch(setQuantity(ProductQuantity));
+    dispatch(setFinalPrice(ProductQuantity * productItem.Price));
+    setProductPopupIsVisible(true);
+  };
 
   return (
     <div className={style.product_curd}>
@@ -42,10 +47,19 @@ const ProductCurd = ({productItem, setProductPopupIsVisible}) => {
           <li>{productItem.Price} ₽</li>
         </ul>
         <p className={style.description}>{productItem.Description}</p>
-        <div className={style.buttons}>
-          <ProductCounter ProductQuantity={ProductQuantity} minus={reduceQuantity} plus={addQuantity}/>
-          <AddToCartButton buttonOnClick={addToCart}/>
-        </div>
+
+        {products.some((item) => item.productData.Id === productItem.Id) ? (
+          <ProductIsSelected />
+        ) : (
+          <div className={style.buttons}>
+            <ProductCounter
+              ProductQuantity={ProductQuantity}
+              minus={reduceQuantity}
+              plus={addQuantity}
+            />
+            <AddToCartButton buttonOnClick={addToCart} />
+          </div>
+        )}
       </div>
     </div>
   );

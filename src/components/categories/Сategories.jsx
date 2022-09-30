@@ -1,31 +1,30 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../../redux/slices/contentSlice";
 import style from "./Сategories.module.scss";
 
 const Сategories = () => {
   const categoriesList = [
     "Все",
-    "Закуски",
     "Горячее",
-    "Супы",
-    "Детское",
     "Десерты",
+    "Суши",
     "Напитки",
+    "Закуски",
+    "Супы",
   ];
   const dispatch = useDispatch()
-  const [activeCategory, setActiveCategory] = React.useState(0)
+  const category = useSelector((state) => state.contentSlice.category)
 
   function changeCategory(categoriesListItem, index) {
     dispatch(setCategory(categoriesListItem))
-    setActiveCategory(index)
   }
 
   return (
     <ul className={style.categories}>
       {categoriesList.map((categoriesListItem, index) => (
         <li key={index} className={style.item}>
-          <button className={`${style.button} ${activeCategory === index ? style.active : ''}`} onClick={() => changeCategory(categoriesListItem, index)}>{categoriesListItem}</button>
+          <button className={`${style.button} ${category === categoriesListItem ? style.active : ''}`} onClick={() => changeCategory(categoriesListItem, index)}>{categoriesListItem}</button>
         </li>
       ))}
     </ul>
@@ -33,3 +32,5 @@ const Сategories = () => {
 };
 
 export default Сategories;
+
+

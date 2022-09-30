@@ -25,22 +25,27 @@ export const selectedProductSlice = createSlice({
         state.additions = state.additions.filter(
           (item) => item !== action.payload.Title
         );
-        state.finalPrice = state.finalPrice - action.payload.Price
+        state.finalPrice = state.finalPrice - action.payload.Price;
       } else {
         state.additions.push(action.payload.Title);
-        state.finalPrice = state.finalPrice + action.payload.Price
+        state.finalPrice = state.finalPrice + action.payload.Price;
       }
     },
-    clearStore : (state) => {
-      state.productData = []
-      state.quantity = 0
-      state.additions = []
-      state.finalPrice = 0
-    }
+    clearStore: (state) => {
+      state.productData = [];
+      state.quantity = 0;
+      state.additions = [];
+      state.finalPrice = 0;
+    },
   },
 });
 
-export const { setProductData, setQuantity, setFinalPrice, SetEdition, clearStore } =
-  selectedProductSlice.actions;
+export const {
+  setProductData,
+  setQuantity,
+  setFinalPrice,
+  SetEdition,
+  clearStore,
+} = selectedProductSlice.actions;
 
 export default selectedProductSlice.reducer;
