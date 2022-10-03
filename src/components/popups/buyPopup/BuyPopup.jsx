@@ -1,17 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./BuyPopup.module.scss";
-
-import cardImg from "../../../sources/images/product-Images/prod-1.png";
 import Logo from "../../logo/Logo";
 import ReactInputMask from "react-input-mask";
 import { useState } from "react";
 import { removeAll } from "../../../redux/slices/cartSlice";
+import { CSSTransition } from "react-transition-group";
+import ErrorPopup from "../errorPopup/ErrorPopup";
 
-const BuyPopup = ({ setByPopupIsOpen }) => {
+const BuyPopup = ({ setByPopupIsOpen, setSuccessfullyPopupIsVisible }) => {
   const orderInfo = useSelector((state) => state.cartSlice);
   const [numberValue, setNumberValue] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [errorPopupIsVisible, setErrorPopupIsVisible] = React.useState(false);
 
   const closePopup = () => {
     setByPopupIsOpen(false);
@@ -23,16 +24,32 @@ const BuyPopup = ({ setByPopupIsOpen }) => {
       numberValue.split("").length < 1
     ) {
       console.log(numberValue.split("").some((item) => item === "_"));
-      alert("Заполните данные номера");
+      // alert("Заполните данные номера");
+      setErrorPopupIsVisible(true);
     } else {
       setByPopupIsOpen(false);
-      alert("Заказ оформлен");
-      dispatch(removeAll())
+      dispatch(removeAll());
+      setSuccessfullyPopupIsVisible(true);
     }
+  };
+
+  const popupTimeout = () => {
+    setTimeout(() => setErrorPopupIsVisible(false), 2000);
   };
 
   return (
     <div className={style.root}>
+      <CSSTransition
+        in={errorPopupIsVisible}
+        timeout={500}
+        classNames="fade"
+        unmountOnExit
+        onEnter={() => popupTimeout()}
+      >
+        <div className="popup">
+          <ErrorPopup text={"Проверьте данные номера"} />
+        </div>
+      </CSSTransition>
       <div className={style.inner}>
         <p className={style.title}>
           <Logo />
@@ -42,16 +59,16 @@ const BuyPopup = ({ setByPopupIsOpen }) => {
         <ul className={style.list}>
           {orderInfo.products.map((item, index) => (
             <li className={style.item} key={index}>
-              <img className={style.image} src={cardImg} alt="" />
+              <div className={style.image}>
+                <img src={item.productData.Image_url} alt="" />
+              </div>
               <div>
                 <p className={style.list__title}>{item.productData.Title}</p>
                 <ul className={style.info}>
                   <li>{item.quantity} пр</li>
                   <li>{item.productData.Weight} г</li>
                   <li>{item.productData.Calories} ккал</li>
-                  <li className={style.info__price}>
-                    {item.finalPrice} ₽
-                  </li>
+                  <li className={style.info__price}>{item.finalPrice} ₽</li>
                 </ul>
 
                 {item.additions.length > 0 && (

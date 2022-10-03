@@ -11,6 +11,7 @@ import {
   personsCountReduce,
 } from "../../redux/slices/cartSlice";
 
+
 const CartCard = ({ title, image, price, quantity, id }) => {
   const dispatch = useDispatch();
 
@@ -26,6 +27,7 @@ const CartCard = ({ title, image, price, quantity, id }) => {
   };
 
   const itemRemove = () => {
+
     dispatch(removeProduct({title, price, quantity}))
   }
 

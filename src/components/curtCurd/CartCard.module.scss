@@ -5,6 +5,7 @@
   border-radius: 20px 20px 20px 5px;
   padding: 30px 40px;
   position: relative;
+  animation: fade-left 0.5s;
 }
 
 .card_image {
@@ -17,7 +18,7 @@
   margin-right: 20px;
 
   img {
-    width: 100%;
+    width: 90%;
   }
 }
 
@@ -60,6 +61,17 @@
   }
 }
 
+@keyframes fade-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media (max-width: 1400px) {
   .card {
     margin-right: 50px;
@@ -99,7 +111,7 @@
     }
   }
 
-  .price{
+  .price {
     font-size: 15px;
     line-height: 20px;
     margin-left: 0;
@@ -108,5 +120,17 @@
 }
 
 @media (max-width: 620px) {
+  .card_image {
+    display: none;
+  }
+  .card {
+    gap: 10px;
+  }
 
+  .card_title {
+    h2 {
+      font-size: 10px;
+      line-height: 110%;
+    }
+  }
 }

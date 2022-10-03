@@ -14,7 +14,7 @@ import {
 } from "../../../redux/slices/selectedProductSlice";
 import { setProducts } from "../../../redux/slices/cartSlice";
 
-const ProductPopup = ({ setProductPopupIsVisible }) => {
+const ProductPopup = ({ setProductPopupIsVisible, setSuccessfullyPopupIsVisible }) => {
   const { productData, finalPrice } = useSelector(
     (state) => state.selectedProductSlice
   );
@@ -29,15 +29,16 @@ const ProductPopup = ({ setProductPopupIsVisible }) => {
   const addToCart = () => {
     dispatch(setProducts(selectedProduct));
     popupClose();
+    setSuccessfullyPopupIsVisible(true)
   };
 
   return (
     <>
       <div className={style.product_popup}>
         <div className={style.product_curd}>
-          {/* <div className={style.image_inner}>
-            <img src={prodImage} alt={"productimage"} />
-          </div> */}
+          <div className={style.image_inner}>
+            <img src={selectedProduct.productData.Image_url} alt={"productimage"} />
+          </div>
           <div className={style.inner}>
             <p className={style.title}>{productData.Title}</p>
             <ul className={style.info}>

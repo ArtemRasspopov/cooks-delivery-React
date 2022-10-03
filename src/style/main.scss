@@ -27,3 +27,28 @@ body {
   user-select: none; /* Non-prefixed version, currently
                                   not supported by any browser */
 }
+
+.popup.fade-enter-active {
+  animation: fade-in 0.2s;
+  animation-duration: 0.5s;
+}
+.popup.fade-exit-active{
+  animation: fade-out 0.5s forwards;
+}
+
+@keyframes fade-in{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes fade-out{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}

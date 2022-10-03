@@ -10,29 +10,47 @@ import Recommendations from "../../components/recommendations/Recommendations";
 //svg
 import { ReactComponent as LogoSvg } from "../../sources/images/Logo.svg";
 import CartCard from "../../components/curtCurd/CartCard";
-import cardImg from "../../sources/images/product-Images/prod-1.png";
 import cartEmptyImage from "../../sources/images/cartEmpty.png";
 import BuyPopup from "../../components/popups/buyPopup/BuyPopup";
 import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
+import SuccessfullyPopup from "../../components/popups/successfullyPopup/SuccessfullyPopup";
 
 function Cart() {
   const { totalPrice, totalQuantity, products } = useSelector(
     (state) => state.cartSlice
   );
   const dispatch = useDispatch();
-  const [byPopupIsOpen, setByPopupIsOpen] = useState(false)
+  const [byPopupIsOpen, setByPopupIsOpen] = useState(false);
+  const [successfullyPopupIsVisible, setSuccessfullyPopupIsVisible] =
+  React.useState(false);
 
   const clearCart = () => {
     dispatch(removeAll());
   };
 
   const order = () => {
-    setByPopupIsOpen(true)
+    setByPopupIsOpen(true);
+  };
+
+  const popupTimeout = () => {
+    setTimeout(() => setSuccessfullyPopupIsVisible(false), 2000);
   }
 
   return (
     <>
       <div className={style.cart}>
+        <CSSTransition
+          in={successfullyPopupIsVisible}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+          onEnter={() => popupTimeout()}
+        >
+          <div className="popup">
+            <SuccessfullyPopup text={"Заказ оформлен"} />
+          </div>
+        </CSSTransition>
         <div className="container">
           <div className={style.inner}>
             <div className={style.header}>
@@ -58,13 +76,15 @@ function Cart() {
                     <CartCard
                       key={id}
                       id={id}
-                      image={cardImg}
+                      image={product.productData.Image_url}
                       title={product.productData.Title}
                       price={product.finalPrice}
                       quantity={product.quantity}
                     />
                   ))}
-                  <button className={style.button} onClick={() => order()}>Оформить заказ</button>
+                  <button className={style.button} onClick={() => order()}>
+                    Оформить заказ
+                  </button>
                 </div>
                 <Recommendations />
                 <Footer />
@@ -80,7 +100,7 @@ function Cart() {
             )}
           </div>
         </div>
-        {byPopupIsOpen &&  <BuyPopup setByPopupIsOpen={setByPopupIsOpen}/>}
+        {byPopupIsOpen && <BuyPopup setByPopupIsOpen={setByPopupIsOpen} setSuccessfullyPopupIsVisible={setSuccessfullyPopupIsVisible}/>}
       </div>
     </>
   );
